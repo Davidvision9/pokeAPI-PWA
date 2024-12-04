@@ -1,0 +1,23 @@
+{
+  "name": "PokeApi",
+  "short_name": "Poke",
+  "theme_color": "#ffcb05", 
+  "background_color": "#3d7d33", 
+  "display": "standalone",
+  "scope": "./",
+  "start_url": "./",
+  "icons": [
+    {
+      "src": "assets/pokePWA.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "assets/pokePWA.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
+    }
+  ]
+}

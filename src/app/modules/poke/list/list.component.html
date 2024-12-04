@@ -1,0 +1,54 @@
+<div class="container my-4">
+  <div *ngIf="catalogoPokemons" class="row">
+    <div *ngFor="let pokemon of catalogoPokemons" class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+      <div class="card mx-auto my-4 shadow"
+        style="max-width: 400px; border-radius: 16px; padding: 12px; background-color: #FAFAFA; border-radius: 24px;">
+        <img (click)="openPokemonDialog(pokemon)" [src]="pokemon.imageUrl" alt="{{ pokemon.name }}"
+          class="card-img-top border hover-img" style="border-radius: 16px; background-color: white;">
+
+        <div class="card-body">
+          <h5 class="card-title text-center text-primary">{{ pokemon.name | titlecase }}</h5>
+          <div class="d-flex justify-content-center mb-3">
+            <span *ngFor="let type of pokemon.types" class="badge text-white fs-6 fw-normal me-1"
+              [ngStyle]="{'background-color': tipoColores[type.type.name] || '#ccc'}">
+              >
+              {{ type.type.name }}
+            </span>
+          </div>
+
+          <div class="d-flex justify-content-between">
+            <div>
+              <p class="mb-0"><strong>Peso:</strong></p>
+              <p>{{ pokemon.weight / 10 }} kg</p>
+            </div>
+            <div>
+              <p class="mb-0"><strong>Altura:</strong></p>
+              <p>{{ pokemon.height / 10 }} m</p>
+            </div>
+          </div>
+
+          <p class="mb-2"><strong>Habilidades:</strong></p>
+          <ul class="list-unstyled mb-4">
+            <li *ngFor="let ability of pokemon.abilities">- {{ ability.ability.name | titlecase }}</li>
+          </ul>
+
+          <div class="d-flex">
+            <button class="btn btn-primary" style="width: 85%;">
+              <a (click)="openPokemonDialog(pokemon)" class="text-white">
+                Ver más detalles
+              </a>
+            </button>
+            <button (click)="aniadirFavoritos(pokemon.name)" class="btn btn-light" mat-icon-button style="z-index: 99;">
+              <mat-icon>{{ pokemon.favorito ? 'star' : 'star_border' }}</mat-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <mat-paginator [length]="totalPokemons" [pageSize]="tamanioPagina" [pageIndex]="paginaActual"
+    (page)="onPageChange($event)" [showFirstLastButtons]="true" class="mt-4">
+  </mat-paginator>
+</div>

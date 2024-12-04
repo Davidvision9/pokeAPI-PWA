@@ -1,0 +1,26 @@
+<nav class="navbar navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">
+      Poke API
+    </a>
+    <div class="row my-2 justify-content-center align-items-center">
+      <div class="col text-end fs-5" data-bs-toggle="tooltip" [attr.title]="favoritos.join(', ')">
+        Favoritos
+      </div>
+
+      |
+      <div class="col text-end fs-5">Estado:</div>
+      <div class="col">
+        <p style="margin-bottom: 0px;" class="badge bg-success fw-normal fs-6" *ngIf="isOnline()">La aplicación está en
+          línea</p>
+        <p style="margin-bottom: 0px;" class="badge bg-danger fw-normal fs-6" *ngIf="!isOnline()">La aplicación está
+          fuera de línea</p>
+      </div>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+
+<!-- <div *ngIf="cargando()" class="spinner-overlay">
+  <mat-spinner [diameter]="50" class="mx-auto d-block"></mat-spinner>
+</div> -->
