@@ -24,7 +24,7 @@ Asegúrate de tener instalados los siguientes programas en tu sistema:
 2. Ejecuta el siguiente comando para clonar el repositorio:
 
    ```bash
-   git clone <URL_DE_TU_REPOSITORIO>
+   git clone https://github.com/Davidvision9/pokeAPI-PWA.git
 
 cd <nombre_del_repositorio>
 
