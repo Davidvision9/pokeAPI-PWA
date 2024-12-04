@@ -1,18 +1,25 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { MatSnackBar } from '@angular/material/snack-bar'
+import { Router } from '@angular/router'
 import { Observable, catchError, throwError } from 'rxjs'
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
 
-  constructor(private snackBar: MatSnackBar) { }
+  constructor(
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       catchError((error: HttpErrorResponse) => {
         const errorMessage = this.getErrorMessage(error)
         this.openSnackbar(errorMessage, 'Cerrar')
+        if (error.status === 404) {
+          this.router.navigate(['/404'])
+        }
         return throwError(() => error)
       })
     )
